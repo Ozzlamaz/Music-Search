@@ -34,13 +34,13 @@ function AlbumModal() {
                                         let duration_M = Math.floor(duration_ms /1000 /60).toString().padStart(2,'0');
                                         let duration_s = Math.floor(Math.floor(duration_ms / 1000) % 60).toString().padStart(2,'0');
                                         return  (
-                                            <li key={id} className='text-dark bg-light d-flex justify-content-between align-items-center my-1 p-1 rounded'>
+                                            <li key={id} className='text-dark bg-light my-1 p-1 rounded'>
                                                 <span>
-                                                {[...name.slice(0,30) , name.length < 30 ? '' : '...']}
+                                                {name}
                                                 </span>
-                                                <span>
+                                                <div className="mt-1 text-end">
                                                     {duration_M+':'+duration_s} <a href={external_urls.spotify} target='_blank'><FaSpotify className="p-1 btn btn-primary" role='button' style={{fontSize: '2rem'}} /></a>
-                                                </span>
+                                                </div>
                                             </li>
                                         )
                                     })}
