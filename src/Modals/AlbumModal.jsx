@@ -1,17 +1,18 @@
 //state
-import useAppContext from "./state management/useAppContext";
+import useAppContext from "../state management/useAppContext";
 //components
-import Album from "./Components/Resultsgrid/Child Components/Album";
+import Album from '../Results Grid Layout/Components/Album';
+import LoadingSpinner from "../MainPage Layout/Components/LoadingSpinner";
 //icons
 import {FaSpotify} from 'react-icons/fa';
 
 function AlbumModal() {
 
-    const {state: {results, tracks: {albumId, list}}, dispatchers: {setTracks}} = useAppContext();
+    const {state: {album: {item, tracksList}, setAlbum}} = useAppContext();
 
     const clearTracksList = () => {
-        if(list.length > 0) {
-            setTracks({albumId: '', list: []})
+        if(tracksList.length > 0) {
+            setAlbum({item: {}, albumId: '', tracksList: []});
         }
     }
     
@@ -20,16 +21,16 @@ function AlbumModal() {
             <div className="modal-dialog modal-dialog-scrollable text-light">
                 <div className="modal-content bg-dark" onClick={(e) => e.stopPropagation()}>
                     <div className="modal-header">
-                        <h3 id='album-modalLabel' className="modal-title">{results.find(item => item.id === albumId)?.name}</h3>
+                        <h3 id='album-modalLabel' className="modal-title">{item.name}</h3>
                         <button type="button" className='btn btn-danger' data-bs-dismiss='modal' onClick={clearTracksList}>Close</button>
                     </div>
-                    {list.length > 0 &&
+                    {tracksList.length > 0 ?
                         <div className="modal-body">
-                            <Album item={results.find(item => item.id === albumId)}/>
-                            <div className=''>
+                            <Album item={item}/>
+                            <div>
                                 <h3 className='text-center my-3'>Tracks</h3>
                                 <ul className='p-0'>
-                                    {list.map(track => {
+                                    {tracksList.map(track => {
                                         const {id, name, duration_ms, external_urls} = track;
                                         let duration_M = Math.floor(duration_ms /1000 /60).toString().padStart(2,'0');
                                         let duration_s = Math.floor(Math.floor(duration_ms / 1000) % 60).toString().padStart(2,'0');
@@ -47,6 +48,8 @@ function AlbumModal() {
                                 </ul>
                             </div>
                         </div>
+                        :
+                        <LoadingSpinner/>
                     }
                 </div>
             </div>

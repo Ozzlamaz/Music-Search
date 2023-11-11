@@ -1,7 +1,7 @@
 //state
-import useAppContext from '../../../state management/useAppContext';
+import useAppContext from '../../state management/useAppContext';
 //hooks
-import getTracks from '../../../hooks/getTracks';
+import getTracks from '../../Modals/Loaders/getTracks';
 //icons
 import {FaSpotify} from 'react-icons/fa'
 import {FaMusic} from 'react-icons/fa'
@@ -9,7 +9,8 @@ import {FaMusic} from 'react-icons/fa'
 
 function Album({item}) {
     const {id, name, release_date, total_tracks, images, artists, external_urls} = item;
-    const {state : {tracks: {albumId}}, dispatchers} = useAppContext();
+
+    const {state : {album: {albumId}, setAlbum}} = useAppContext();
 
     return (
         <article 
@@ -33,7 +34,7 @@ function Album({item}) {
                         <span style={{fontSize: '0.8rem'}} className="me-1">Go Spotify</span><FaSpotify />
                     </a>
                     {albumId !== id &&
-                        <button onClick={() => getTracks(id, dispatchers)} type="button" className="p-1 btn btn-primary text-white btn-outline-dark" data-bs-toggle="modal" data-bs-target='#album-modal'>
+                        <button onClick={() => getTracks(id, setAlbum)} type="button" className="p-1 btn btn-primary text-white btn-outline-dark" data-bs-toggle="modal" data-bs-target='#album-modal'>
                             <span style={{fontSize: '0.8rem'}} className="me-1">{'Show '+total_tracks+' tracks'}</span><FaMusic/>
                         </button> 
                     }

@@ -5,7 +5,7 @@ import {FaSpotify} from 'react-icons/fa'
 import {RiAlbumFill} from 'react-icons/ri'
 //other libraries
 import Ratings from 'react-ratings-declarative'
-import avatar from '../Child Components/assets/images/avatar.webp'
+import avatar from '../assets/images/avatar.webp'
 
 
 function Artist({item}) {
@@ -38,15 +38,13 @@ function Artist({item}) {
                         </Ratings>
                     </div>
                 </div>
-                <div className="btn-group mb-2 w-100" role='group'>
+                <div className="btn-group mb-2" role='group'>
                     <a className="p-1 btn btn-primary btn-outline-dark text-white" href={external_urls.spotify} target="_blank">
                         <span style={{fontSize: '0.8rem'}} className="me-1">Go Spotify</span><FaSpotify/>
                     </a>
-                    <button type="button" className="p-1 btn btn-primary text-white btn-outline-dark">
-                        <Link to={`/Music-Search/${id}/0/1`}>
-                            <span style={{fontSize: '0.8rem'}} className="me-1">{'Show Albums'}</span><RiAlbumFill />
-                        </Link>
-                    </button> 
+                    <Link className="p-1 btn btn-primary text-white btn-outline-dark" to={`/Music-Search/${id}/0/1`}>
+                        <span style={{fontSize: '0.8rem'}} className="me-1">Show Albums</span><RiAlbumFill />
+                    </Link>
                 </div>
             </article>
         </div>

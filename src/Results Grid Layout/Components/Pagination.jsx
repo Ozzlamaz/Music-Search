@@ -1,13 +1,8 @@
-//state
-import useAppContext from "../../../state management/useAppContext"
-//react hooks
 import { useState, useEffect } from "react"
 //router
 import { Link, useParams } from 'react-router-dom'
 
-function Pagination() {
-
-    const {state : {results, total}} = useAppContext();
+function Pagination({results , total}) {
 
     const [currentPage, setCurrentPage] = useState(1);
     
@@ -32,9 +27,7 @@ function Pagination() {
     return (
         <nav className="mt-5">
             <ul className='pagination justify-content-center'>
-                <li 
-                type='button' 
-                className={currentPage === 1 ? 'page-item invisible' : 'page-item visible'} >
+                <li className={currentPage === 1 ? 'page-item invisible' : 'page-item visible'} >
                     <Link 
                     to={artistIdParam ? `/Music-Search/${artistIdParam}/${itemsPerPage * (currentPage - 2)}/${currentPage -1}` : `/Music-Search/${inputParam}/${filterParam}/${itemsPerPage * (currentPage - 2)}/${currentPage - 1}`}
                     className="page-link">
@@ -43,7 +36,7 @@ function Pagination() {
                 </li>
                 {pagesArray.slice(currentPage === 1 ? currentPage - 1 : currentPage -2, currentPage === pageCount ? currentPage - 1 : currentPage + 1).map((pageNum) => {
                     return (
-                        <li type="button" className='page-item' key={pageNum} >
+                        <li className='page-item' key={pageNum} >
                             <Link to={artistIdParam ? `/Music-Search/${artistIdParam}/${itemsPerPage * (pageNum - 1)}/${pageNum}` : `/Music-Search/${inputParam}/${filterParam}/${itemsPerPage * (pageNum - 1)}/${pageNum}`}
                             className={(currentPage  ===  pageNum) ? 'page-link active' : 'page-link' }>
                                 {pageNum}

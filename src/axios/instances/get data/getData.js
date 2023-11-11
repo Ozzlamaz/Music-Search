@@ -30,9 +30,8 @@ getData.interceptors.request.use(
 getData.interceptors.response.use(
     (response) => {
         if(response.status === 200) {
-            if(response.config.url.includes('tracks')) {
-                const albumId = response.config.url.match(/(?<=albums\/)(.+)(?=\/tracks)/g)[0];
-                return {albumId: albumId, list: response.data.items}
+            if(response.data.hasOwnProperty('tracks')) {
+                return response.data
             }
             //API response may vary
             return response.data.albums || response.data.artists || response.data;

@@ -1,30 +1,44 @@
 //state
 import AppContextProvider from './state management/AppContextProvider.jsx'
 //router
-import {Routes, Route} from 'react-router-dom'
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
 //components
-import MainPage from './Components/Mainpage/MainPage.jsx'
-import Footer from './Components/Mainpage/Child Components/Footer.jsx'
-import AlbumModal from './AlbumModal'
-import ResultGrid from './Components/Resultsgrid/ResultGrid.jsx'
-import ErrorPage from './ErrorPage.jsx'
-//bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min.js'
+import MainPage from './MainPage Layout/MainPage.jsx'
+import AlbumModal from './Modals/AlbumModal.jsx'
+import ResultGrid from './Results Grid Layout/ResultGrid.jsx'
+import ErrorPage from './Results Grid Layout/Components/ErrorPage.jsx'
+import Welcome from './MainPage Layout/Components/Welcome.jsx'
+//Loaders
+import getResults from './Results Grid Layout/Loaders/getResults.js'
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='Music-Search' element={<MainPage />}>
+      <Route index element={<Welcome />}/>
+      <Route 
+        path=':inputParam/:filterParam/:offsetParam/:pageParam' 
+        element={<ResultGrid />}
+        loader={getResults}
+        errorElement={<ErrorPage />}
+        />
+      <Route 
+        path=':artistIdParam/:offsetParam/:pageParam' 
+        element={<ResultGrid />}
+        loader={getResults}
+        errorElement={<ErrorPage />}
+        />
+      <Route path='*' element={<ErrorPage />}/>
+    </Route>
+  )
+)
 
 function App() {
 
   return (
     <>
       <AppContextProvider>
-          <Routes>
-                <Route path='/Music-Search' element={<MainPage />}>
-                  <Route path=':inputParam/:filterParam/:offsetParam/:pageParam' element={<ResultGrid />}/>
-                  <Route path=':artistIdParam/:offsetParam/:pageParam' element={<ResultGrid />}/>
-                  <Route path='*' element={<ErrorPage />}/>
-                </Route>
-          </Routes>
-        <Footer />
+        <RouterProvider router={router}/>
         <AlbumModal />
       </AppContextProvider>
     </>
