@@ -1,7 +1,7 @@
 //state
-import useAppContext from '../../state management/useAppContext';
+import useAppContext from '../context/useAppContext';
 //hooks
-import getTracks from '../../Modals/Loaders/getTracks';
+import getTracks from '../services/getTracks';
 //icons
 import {FaSpotify} from 'react-icons/fa'
 import {FaMusic} from 'react-icons/fa'

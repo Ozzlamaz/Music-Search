@@ -1,13 +1,13 @@
 //state
-import useAppContext from '../state management/useAppContext'
+import useAppContext from '../context/useAppContext'
 //router
 import { useLoaderData, useNavigation } from 'react-router-dom'
 //components
-import AlbumGrid from './Components/AlbumGrid'
-import Artist from './Components/Artist'
-import Pagination from './Components/Pagination'
-import ErrorPage from './Components/ErrorPage'
-import LoadingSpinner from '../MainPage Layout/Components/LoadingSpinner'
+import AlbumGrid from '../components/AlbumGrid'
+import Artist from '../components/Artist'
+import Pagination from '../components/Pagination'
+import ErrorPage from './ErrorPage'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 
 function ResultGrid() {

@@ -1,4 +1,4 @@
-import {getData} from "../../axios/instances/get data/getData";
+import {getData} from "./getData";
 
 const getTracks = async (id, setAlbum) => {
 

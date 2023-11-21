@@ -1,5 +1,5 @@
 import axios from 'axios';
-import getToken from '../../../hooks/getToken';
+import getToken from './getToken';
 
 export const getData = axios.create();
 

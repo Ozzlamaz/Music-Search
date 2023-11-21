@@ -1,5 +1,5 @@
 //components
-import useAppContext from "../../state management/useAppContext"
+import useAppContext from "../context/useAppContext"
 import Album from "./Album"
 
 function AlbumGrid({item}) {

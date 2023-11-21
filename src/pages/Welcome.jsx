@@ -1,5 +1,5 @@
 import { useNavigation } from "react-router-dom";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function Welcome() {
 

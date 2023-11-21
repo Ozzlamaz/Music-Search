@@ -1,15 +1,15 @@
-//state
-import AppContextProvider from './state management/AppContextProvider.jsx'
+//context
+import AppContextProvider from './context/AppContextProvider.jsx'
 //router
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
-//components
-import MainPage from './MainPage Layout/MainPage.jsx'
-import AlbumModal from './Modals/AlbumModal.jsx'
-import ResultGrid from './Results Grid Layout/ResultGrid.jsx'
-import ErrorPage from './Results Grid Layout/Components/ErrorPage.jsx'
-import Welcome from './MainPage Layout/Components/Welcome.jsx'
+// pages & modals
+import MainPage from './layout/MainPage.jsx'
+import AlbumModal from './components/AlbumModal.jsx'
+import ResultGrid from './pages/ResultGrid.jsx'
+import ErrorPage from './pages/ErrorPage.jsx'
+import Welcome from './pages/Welcome.jsx'
 //Loaders
-import getResults from './Results Grid Layout/Loaders/getResults.js'
+import getResults from './services/Loaders/getResults.js'
 
 
 const router = createBrowserRouter(

@@ -1,8 +1,8 @@
 //state
-import useAppContext from "../state management/useAppContext";
+import useAppContext from "../context/useAppContext";
 //components
-import Album from '../Results Grid Layout/Components/Album';
-import LoadingSpinner from "../MainPage Layout/Components/LoadingSpinner";
+import Album from './Album';
+import LoadingSpinner from "./LoadingSpinner";
 //icons
 import {FaSpotify} from 'react-icons/fa';
 

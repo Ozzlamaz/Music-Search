@@ -1,7 +1,7 @@
 //components
-import Search from './Components/Search'
-import Footer from './Components/Footer'
-import Header from "./Components/Header"
+import Search from '../components/Search'
+import Footer from '../components/Footer'
+import Header from "../components/Header"
 //router
 import { Outlet } from "react-router-dom"
 

@@ -1,5 +1,5 @@
 //state
-import useAppContext from '../../state management/useAppContext'
+import useAppContext from '../context/useAppContext'
 import { useState, useRef } from "react"
 //router
 import { useNavigate } from "react-router-dom"

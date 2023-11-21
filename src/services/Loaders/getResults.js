@@ -1,4 +1,4 @@
-import { getData } from "../../axios/instances/get data/getData";
+import { getData } from "../getData";
 
 const getResults = async ({params}) => {
     const { inputParam, filterParam, artistIdParam, offsetParam } = params;
