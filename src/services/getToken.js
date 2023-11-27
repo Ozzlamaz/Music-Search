@@ -1,8 +1,5 @@
 import axios from 'axios'
 
-const clientId = 'a81850de04b941a9bf47df9a6ff243c2';
-const clientSecret = '54b27539c54144fb922bba44d208c858';
-
 const url = "https://accounts.spotify.com/api/token";
 
 const getToken = async () => {
@@ -12,7 +9,7 @@ const getToken = async () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization' : 'Basic ' + btoa(clientId + ':' + clientSecret)
+                'Authorization' : 'Basic ' + btoa(import.meta.env.VITE_CLIENT_ID + ':' + import.meta.env.VITE_CLIENT_SECRET)
             },
             data : 'grant_type=client_credentials'
         })
