@@ -9,7 +9,7 @@ const getToken = async () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization' : 'Basic ' + btoa(import.meta.env.VITE_CLIENT_ID + ':' + import.meta.env.VITE_CLIENT_SECRET)
+                'Authorization' : 'Basic ' + btoa(import.meta.env.CLIENT_ID + ':' + import.meta.env.CLIENT_SECRET)
             },
             data : 'grant_type=client_credentials'
         })
