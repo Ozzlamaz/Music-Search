@@ -14,21 +14,21 @@ import getResults from './services/Loaders/getResults.js'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='Music-Search' element={<MainPage />}>
+    <Route path='/' element={<MainPage />}>
       <Route index element={<Welcome />}/>
       <Route 
-        path=':inputParam/:filterParam/:offsetParam/:pageParam' 
+        path=':inputParam/:filterParam/:artistIdParam?/:offsetParam/:pageParam' 
         element={<ResultGrid />}
         loader={getResults}
         errorElement={<ErrorPage />}
         />
-      <Route 
+      {/* <Route 
         path=':artistIdParam/:offsetParam/:pageParam' 
         element={<ResultGrid />}
         loader={getResults}
         errorElement={<ErrorPage />}
         />
-      <Route path='*' element={<ErrorPage />}/>
+      <Route path='*' element={<ErrorPage />}/> */}
     </Route>
   )
 )

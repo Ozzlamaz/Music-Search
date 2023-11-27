@@ -4,53 +4,70 @@ import { Link, useParams } from 'react-router-dom'
 
 function Pagination({results , total}) {
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const {inputParam, filterParam, artistIdParam, offsetParam, pageParam} = useParams();
+    
+    const url = artistIdParam ? `${inputParam}/${filterParam}/${artistIdParam}` : `${inputParam}/${filterParam}`
+
+    const pageNumber = parseInt(pageParam.match(/\d+/)[0])
+
+    const offsetNumber = parseInt(offsetParam.match(/\d+/)[0])
+
+    const [currentPage, setCurrentPage] = useState(pageNumber);
     
     const itemsPerPage = 12;
 
-    const pageCount = Math.ceil(total / itemsPerPage);
-
-    const pagesArray = Array.from({ length: pageCount }, (_, index) => index + 1);
+    const totalPages = Math.ceil(total / itemsPerPage);
     
-    const {inputParam, filterParam, artistIdParam, pageParam} = useParams();
-
-    useEffect(() => {
-        if(pageParam) {
-            setCurrentPage(parseInt(pageParam))
+    const SlicePages = () => {
+        const pagesArray = Array.from({ length: totalPages }, (_, index) => index + 1);
+        if (currentPage === 1) {
+            return pagesArray.slice(currentPage - 1, currentPage + 3)
         }
-    },[results]);
+        if (currentPage === 2) {
+            return pagesArray.slice(currentPage - 2, currentPage + 3)
+        }
+        if (currentPage === totalPages - 1) {
+            return pagesArray.slice(currentPage - 4)
+        }
+        if (currentPage === totalPages) {
+            return pagesArray.slice(currentPage - 3)
+        }
+        return pagesArray.slice(currentPage - 3, currentPage + 2)
+    }
+    
 
     useEffect(() => {
-        window.scrollTo({ behavior: 'smooth', top: '0px' });
-      }, [currentPage]);
+        setCurrentPage(pageNumber)
+    },[results]);
 
     return (
         <nav className="mt-5">
             <ul className='pagination justify-content-center'>
-                <li className={currentPage === 1 ? 'page-item invisible' : 'page-item visible'} >
+                <li className='page-item'>
                     <Link 
-                    to={artistIdParam ? `/Music-Search/${artistIdParam}/${itemsPerPage * (currentPage - 2)}/${currentPage -1}` : `/Music-Search/${inputParam}/${filterParam}/${itemsPerPage * (currentPage - 2)}/${currentPage - 1}`}
-                    className="page-link">
+                        to={`/${url}/${offsetNumber - itemsPerPage}/${currentPage - 1}`}
+                        className={"page-link " + (currentPage === 1 && 'disabled')}
+                    >
                         &laquo;
                     </Link>
                 </li>
-                {pagesArray.slice(currentPage === 1 ? currentPage - 1 : currentPage -2, currentPage === pageCount ? currentPage - 1 : currentPage + 1).map((pageNum) => {
+                {SlicePages().map((pageNum) => {
                     return (
-                        <li className='page-item' key={pageNum} >
-                            <Link to={artistIdParam ? `/Music-Search/${artistIdParam}/${itemsPerPage * (pageNum - 1)}/${pageNum}` : `/Music-Search/${inputParam}/${filterParam}/${itemsPerPage * (pageNum - 1)}/${pageNum}`}
-                            className={(currentPage  ===  pageNum) ? 'page-link active' : 'page-link' }>
+                        <li className='page-item' key={pageNum}>
+                            <Link 
+                                to={`/${url}/offset=${pageNum * itemsPerPage}/page=${pageNum}`}
+                                className={'page-link '+ (currentPage  ===  pageNum && 'active') }
+                            >
                                 {pageNum}
                             </Link>
                         </li>
                     )
                 })}
-                <li 
-                type='button' 
-                className={currentPage === pageCount ? 'page-item invisible' : 'page-item visible'} 
-                onClick={() => setCurrentPage(currentPage + 1)}>
+                <li className='page-item'>
                     <Link 
-                    to={artistIdParam ? `/Music-Search/${artistIdParam}/${itemsPerPage * currentPage}/${currentPage + 1}` : `/Music-Search/${inputParam}/${filterParam}/${itemsPerPage * currentPage}/${currentPage + 1}`}
-                    className="page-link">
+                        to={`/${url}/offset=${offsetNumber + itemsPerPage}/page=${currentPage + 1}`}
+                        className={"page-link " + (currentPage === totalPages && 'disabled')}
+                    >
                         &raquo;
                     </Link>
                 </li>

@@ -42,7 +42,7 @@ function Artist({item}) {
                     <a className="p-1 btn btn-primary btn-outline-dark text-white" href={external_urls.spotify} target="_blank">
                         <span style={{fontSize: '0.8rem'}} className="me-1">Go Spotify</span><FaSpotify/>
                     </a>
-                    <Link className="p-1 btn btn-primary text-white btn-outline-dark" to={`/Music-Search/${id}/0/1`}>
+                    <Link className="p-1 btn btn-primary text-white btn-outline-dark" to={`/${name}/albums/${id}/offset=0/page=1`}>
                         <span style={{fontSize: '0.8rem'}} className="me-1">Show Albums</span><RiAlbumFill />
                     </Link>
                 </div>

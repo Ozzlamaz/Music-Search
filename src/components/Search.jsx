@@ -1,5 +1,4 @@
 //state
-import useAppContext from '../context/useAppContext'
 import { useState, useRef } from "react"
 //router
 import { useNavigate } from "react-router-dom"
@@ -18,14 +17,6 @@ function Search() {
 
     const navigate = useNavigate();
 
-    const handleSelect = () => {
-        setFilter(filterRef.current.value)
-    };
-
-    const handleInput = (e) => {
-        setInput(e.target.value);
-    };
-
     const handleAlert = () => {
         if (input === '') {
             setAlert(true);
@@ -34,7 +25,7 @@ function Search() {
 
     const handleKeyDown = (e) => {
         if(e.key === 'Enter' && input !== '') {
-            navigate(`${input}/${filter}/0/1`);
+            navigate(`${input}/${filter}/offset=0/page=1`);
             return;
         }
         if(e.key === 'Enter' && input === '') {
@@ -45,7 +36,7 @@ function Search() {
 
     const handleClick = () => {
         if(input !== '') {
-            navigate(`${input}/${filter}/0/1`);
+            navigate(`${input}/${filter}/offset=0/page=1`);
             return;
         }
         handleAlert();
@@ -59,14 +50,14 @@ function Search() {
                 <input 
                  onKeyDown={(e) => handleKeyDown(e)} 
                  className='py-1 px-1 me-1' 
-                 value={input} onChange={handleInput}
+                 value={input} onChange={(e) => setInput(e.target.value)}
                  style={{width: '320px'}}
                  type="text"
                 />
                 <div>
                     <select 
                      ref={filterRef} 
-                     onChange={handleSelect} 
+                     onChange={() => setFilter(filterRef.current.value)} 
                      name="type" 
                      id="type"
                      className="btn btn-primary me-1" 
