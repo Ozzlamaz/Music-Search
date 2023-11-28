@@ -23,7 +23,7 @@ function Artist({item}) {
                 />
                 <div className='card-body'>
                     <h5 className='card-title'>Artist</h5>
-                    <p className="card-text">{[...name.slice(0,60) , name.length < 60 ? '' : '...']}</p>
+                    <p className="card-text">{[...name.slice(0,30) , name.length < 30 ? '' : '...']}</p>
                     <h6 className='card-subtitle'>Genres</h6>
                     <p className="card-text">{genres.length !== 0 ? genres[0] : 'Unknown'}</p>
                     <h6 className="card-subtitle">Popularity</h6>

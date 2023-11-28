@@ -23,7 +23,7 @@ function Album({item}) {
             <div className='card-body'>
                 <div className={albumId === id ? 'text-center' : undefined}>
                     <h5 className='card-title'>Album</h5>
-                    <p className="card-text">{[...name.slice(0,37) , name.length < 37 ? '' : '...']}</p>
+                    <p className="card-text">{[...name.slice(0,30) , name.length < 30 ? '' : '...']}</p>
                     <h6 className='card-subtitle'>Artist</h6>
                     <p className="card-title">{artists[0].name}</p>
                     <h6 className='card-subtitle'>Release Date</h6>
