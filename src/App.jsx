@@ -22,14 +22,7 @@ const router = createBrowserRouter(
         loader={getResults}
         errorElement={<ErrorPage />}
         />
-      {/* <Route 
-        path=':artistIdParam/:offsetParam/:pageParam' 
-        element={<ResultGrid />}
-        loader={getResults}
-        errorElement={<ErrorPage />}
-        />
-      <Route path='*' element={<ErrorPage />}/> */}
-    </Route>
+      </Route>
   )
 )
 

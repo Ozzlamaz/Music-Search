@@ -13,13 +13,13 @@ function Album({item}) {
     const {state : {album: {albumId}, setAlbum}} = useAppContext();
 
     return (
-        <article 
-            className='card mx-auto' 
-            style={albumId !== id ? {width: '18.75rem'} : {width: '100%'}}>
-            <img className="card-img-top mx-auto" 
-            src={images[1].url} 
-            style={{width: '17rem', height: '17rem'}}
-            alt={name} />
+        <article className='card mx-auto' style={albumId !== id ? {width: '18.75rem'} : {width: '100%'}}>
+            <img 
+                className="card-img-top mx-auto object-fit-scale" 
+                src={images[1].url} 
+                style={{width: '17rem', height: '17rem'}}
+                alt={name} 
+            />
             <div className='card-body d-flex flex-column justify-content-between' style={{height: '18rem'}}>
                 <div className={albumId !== id ? '' : 'text-center'}>
                     <h5 className='card-title'>Album</h5>
@@ -34,9 +34,9 @@ function Album({item}) {
                         <span style={{fontSize: '0.8rem'}} className="me-1">Go Spotify</span><FaSpotify />
                     </a>
                     {albumId !== id &&
-                        <button onClick={() => getTracks(id, setAlbum)} type="button" className="p-1 btn btn-primary text-white btn-outline-dark" data-bs-toggle="modal" data-bs-target='#album-modal'>
-                            <span style={{fontSize: '0.8rem'}} className="me-1">{'Show '+total_tracks+' tracks'}</span><FaMusic/>
-                        </button> 
+                    <button onClick={() => getTracks(id, setAlbum)} type="button" className="p-1 btn btn-primary text-white btn-outline-dark" data-bs-toggle="modal" data-bs-target='#album-modal'>
+                        <span style={{fontSize: '0.8rem'}} className="me-1">{'Show '+total_tracks+' tracks'}</span><FaMusic/>
+                    </button> 
                     }
                 </div>
             </div>

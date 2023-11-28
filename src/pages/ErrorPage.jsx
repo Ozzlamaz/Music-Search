@@ -1,4 +1,5 @@
 import { useNavigate, useRouteError } from "react-router-dom"
+import { Link } from "react-router-dom";
 import {RiEmotionSadLine} from 'react-icons/ri'
 
 function ErrorPage() {
@@ -12,7 +13,7 @@ function ErrorPage() {
             <div>
                 <RiEmotionSadLine className="text-secondary" style={{fontSize: '10rem'}}/>
             </div>
-            <button onClick={() => {navigate('/Music-Search/'); window.location.reload()}} className="btn btn-danger" type="button">Go Back</button>
+            <Link onClick={() => {navigate(-1)}} className="btn btn-danger" type="button">Go Back</Link>
         </div>
     )
 }

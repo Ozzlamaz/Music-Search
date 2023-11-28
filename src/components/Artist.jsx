@@ -18,7 +18,7 @@ function Artist({item}) {
         <div className='mb-4 col-xxl-3 col-xl-4 col-md-6 col-sm-12'>
             <article id={id} className="card mx-auto" style={{width: '18.75rem'}}>
                 <img 
-                className='card-img-top mx-auto'
+                className='card-img-top mx-auto object-fit-scale'
                 style={{width: '17rem', height: '17rem'}} 
                 src={images.length > 0 ? images[1].url : avatar} 
                 alt={name} />
@@ -38,12 +38,14 @@ function Artist({item}) {
                         </Ratings>
                     </div>
                 </div>
-                <div className="btn-group mb-2" role='group'>
+                <div className="btn-group" role='group'>
                     <a className="p-1 btn btn-primary btn-outline-dark text-white" href={external_urls.spotify} target="_blank">
-                        <span style={{fontSize: '0.8rem'}} className="me-1">Go Spotify</span><FaSpotify/>
+                        <span style={{fontSize: '0.8rem'}} className="me-1">Go Spotify</span>
+                        <span><FaSpotify/></span>
                     </a>
                     <Link className="p-1 btn btn-primary text-white btn-outline-dark" to={`/${name}/albums/${id}/offset=0/page=1`}>
-                        <span style={{fontSize: '0.8rem'}} className="me-1">Show Albums</span><RiAlbumFill />
+                        <span style={{fontSize: '0.8rem'}} className="me-1">Show Albums</span>
+                        <span><RiAlbumFill /></span>
                     </Link>
                 </div>
             </article>

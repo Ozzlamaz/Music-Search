@@ -21,7 +21,7 @@ function Pagination({results , total}) {
     const SlicePages = () => {
         const pagesArray = Array.from({ length: totalPages }, (_, index) => index + 1);
         if (currentPage === 1) {
-            return pagesArray.slice(currentPage - 1, currentPage + 3)
+            return pagesArray.slice(currentPage - 1, currentPage + 4)
         }
         if (currentPage === 2) {
             return pagesArray.slice(currentPage - 2, currentPage + 3)
