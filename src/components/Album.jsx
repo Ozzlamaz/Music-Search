@@ -29,7 +29,7 @@ function Album({item}) {
                     <h6 className='card-subtitle'>Release Date</h6>
                     <p className="card-text">{release_date.split('-').reverse().join('/')}</p>
                 </div>
-                <div className="btn-group mb-2 w-100" role='group'>
+                <div className="btn-group w-100" role='group'>
                     <a className="p-1 btn btn-primary btn-outline-dark text-white" href={external_urls.spotify} target="_blank">
                         <span style={{fontSize: '0.8rem'}} className="me-1">Go Spotify</span><FaSpotify />
                     </a>
