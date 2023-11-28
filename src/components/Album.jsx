@@ -20,25 +20,33 @@ function Album({item}) {
                 style={{width: '17rem', height: '17rem'}}
                 alt={name} 
             />
-            <div className='card-body d-flex flex-column justify-content-between' style={{height: '18rem'}}>
-                <div className={albumId !== id ? '' : 'text-center'}>
+            <div className='card-body'>
+                <div className={albumId === id ? 'text-center' : undefined}>
                     <h5 className='card-title'>Album</h5>
-                    <p className="card-text">{[...name.slice(0,60) , name.length < 60 ? '' : '...']}</p>
+                    <p className="card-text">{[...name.slice(0,37) , name.length < 37 ? '' : '...']}</p>
                     <h6 className='card-subtitle'>Artist</h6>
                     <p className="card-title">{artists[0].name}</p>
                     <h6 className='card-subtitle'>Release Date</h6>
                     <p className="card-text">{release_date.split('-').reverse().join('/')}</p>
                 </div>
-                <div className="btn-group w-100" role='group'>
-                    <a className="p-1 btn btn-primary btn-outline-dark text-white" href={external_urls.spotify} target="_blank">
-                        <span style={{fontSize: '0.8rem'}} className="me-1">Go Spotify</span><FaSpotify />
-                    </a>
-                    {albumId !== id &&
-                    <button onClick={() => getTracks(id, setAlbum)} type="button" className="p-1 btn btn-primary text-white btn-outline-dark" data-bs-toggle="modal" data-bs-target='#album-modal'>
-                        <span style={{fontSize: '0.8rem'}} className="me-1">{'Show '+total_tracks+' tracks'}</span><FaMusic/>
-                    </button> 
-                    }
-                </div>
+            </div>
+            <div className="btn-group" role='group'>
+                <a className="p-1 btn btn-primary btn-outline-dark text-white" href={external_urls.spotify} target="_blank">
+                    <span>Go Spotify </span>
+                    <span><FaSpotify /></span>
+                </a>
+                {albumId !== id &&
+                <button
+                    className="p-1 btn btn-primary btn-outline-dark text-white" 
+                    onClick={() => getTracks(id, setAlbum)} 
+                    data-bs-toggle="modal" 
+                    data-bs-target='#album-modal'
+                    type="button" 
+                    >
+                    <span>{`Show ${total_tracks} tracks `}</span>
+                    <span><FaMusic/></span>
+                </button> 
+                }
             </div>
         </article>
     )
