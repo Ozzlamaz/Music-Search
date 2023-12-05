@@ -39,6 +39,8 @@ getData.interceptors.response.use(
     },
     
     (error) => {
-        console.log(error)
+        if (error.response.status === 400) {
+            return {error: 'a bug in the api caused this, messing with total pagination pages'}
+        }
     }
 );

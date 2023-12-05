@@ -12,6 +12,10 @@ const getResults = async ({params}) => {
 
     const response = await getData(url);
 
+    if (response.error) {
+        throw Error (response.error)
+    }
+
     if(!response) {
         throw Error ('Could not find anything, try refreshing the page');
     }

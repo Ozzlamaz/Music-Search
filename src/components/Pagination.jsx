@@ -18,24 +18,10 @@ function Pagination({results , total}) {
 
     const totalPages = Math.ceil(total / itemsPerPage);
     
-    const SlicePages = () => {
-        const pagesArray = Array.from({ length: totalPages }, (_, index) => index + 1);
-        if (currentPage === 1) {
-            return pagesArray.slice(currentPage - 1, currentPage + 4)
-        }
-        if (currentPage === 2) {
-            return pagesArray.slice(currentPage - 2, currentPage + 3)
-        }
-        if (currentPage === totalPages - 1) {
-            return pagesArray.slice(currentPage - 4)
-        }
-        if (currentPage === totalPages) {
-            return pagesArray.slice(currentPage - 3)
-        }
-        return pagesArray.slice(currentPage - 3, currentPage + 2)
-    }
-    
+    const pagesArray = Array.from({ length: totalPages }, (_, index) => index + 1);
 
+    const pageSlice = pagesArray.filter((page) => (page >= (currentPage - 2) && page <= (currentPage + 2)))
+    
     useEffect(() => {
         setCurrentPage(pageNumber)
     },[results]);
@@ -45,17 +31,25 @@ function Pagination({results , total}) {
             <ul className='pagination justify-content-center'>
                 <li className='page-item'>
                     <Link 
-                        to={`/${url}/${offsetNumber - itemsPerPage}/${currentPage - 1}`}
+                        to={`/${url}/offset=0/page=1`}
                         className={"page-link " + (currentPage === 1 && 'disabled')}
                     >
                         &laquo;
                     </Link>
                 </li>
-                {SlicePages().map((pageNum) => {
+                <li className='page-item'>
+                    <Link 
+                        to={`/${url}/offset=${offsetNumber - itemsPerPage}/page=${currentPage - 1}`}
+                        className={"page-link " + (currentPage === 1 && 'disabled')}
+                    >
+                        &#8249;
+                    </Link>
+                </li>
+                {pageSlice.map((pageNum) => {
                     return (
                         <li className='page-item' key={pageNum}>
                             <Link 
-                                to={`/${url}/offset=${pageNum * itemsPerPage}/page=${pageNum}`}
+                                to={`/${url}/offset=${(pageNum * itemsPerPage) - itemsPerPage}/page=${pageNum}`}
                                 className={'page-link '+ (currentPage  ===  pageNum && 'active') }
                             >
                                 {pageNum}
@@ -66,6 +60,14 @@ function Pagination({results , total}) {
                 <li className='page-item'>
                     <Link 
                         to={`/${url}/offset=${offsetNumber + itemsPerPage}/page=${currentPage + 1}`}
+                        className={"page-link " + (currentPage === totalPages && 'disabled')}
+                    >
+                        &#8250;
+                    </Link>
+                </li>
+                <li className='page-item'>
+                    <Link 
+                        to={`/${url}/offset=${(totalPages - 1) * itemsPerPage}/page=${totalPages}`}
                         className={"page-link " + (currentPage === totalPages && 'disabled')}
                     >
                         &raquo;
